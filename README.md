@@ -1,2 +1,3 @@
 # KimDamDev-BusinessLogic
-Alpha code for my company website business logic
+Alpha business logic code for my old company website www.kimdamdev.dk business logic
+"kimdamdev.dk - Umbraco website is not included"
