@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://smbsaas/websitepanel/enterpriseserver" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://smbsaas/websitepanel/enterpriseserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://smbsaas/websitepanel/enterpriseserver">
+      <s:element name="UserExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserByIdResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Role" type="tns:UserRole" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:UserStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginStatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginStatus" type="tns:UserLoginStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="FailedLogins" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPeer" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Changed" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDemo" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstantMessenger" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecondaryPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecondaryEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlMail" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EcommerceEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalParams" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vlans" type="tns:ArrayOfUserVlan" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UserRole">
+        <s:restriction base="s:string">
+          <s:enumeration value="Administrator" />
+          <s:enumeration value="Reseller" />
+          <s:enumeration value="User" />
+          <s:enumeration value="ResellerCSR" />
+          <s:enumeration value="PlatformCSR" />
+          <s:enumeration value="ResellerHelpdesk" />
+          <s:enumeration value="PlatformHelpdesk" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Active" />
+          <s:enumeration value="Suspended" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Pending" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserLoginStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Enabled" />
+          <s:enumeration value="Disabled" />
+          <s:enumeration value="LockedOut" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfUserVlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserVlan" nillable="true" type="tns:UserVlan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserVlan">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VLanID" type="s:unsignedShort" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserByUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserByUsernameResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="recursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersResult" type="tns:ArrayOfUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserInfo" nillable="true" type="tns:UserInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddUserVLan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="vLan" type="tns:UserVlan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserVLanResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteUserVLan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="vLanId" type="s:unsignedShort" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserVLanResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRawUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="recursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRawUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRawUsersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersPaged">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterColumn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortColumn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maximumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersPagedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersPagedResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersPagedRecursive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterColumn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterValue" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortColumn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maximumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersPagedRecursiveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersPagedRecursiveResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersSummaryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDomainsPaged">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterColumn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortColumn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startRow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="maximumRows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDomainsPagedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDomainsPagedResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRawUserPeers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRawUserPeersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRawUserPeersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserPeers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserPeersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserPeersResult" type="tns:ArrayOfUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserParents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserParentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserParentsResult" type="tns:ArrayOfUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendLetter" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserLiteral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPeer" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDemo" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secondaryEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="primaryPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secondaryPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instantMessenger" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="htmlMail" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ecommerceEnabled" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendLetter" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserLiteralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddUserLiteralResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="taskId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserTaskResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserTaskAsynchronously">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="taskId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserTaskAsynchronouslyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserTaskAsynchronouslyResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserLiteral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="statusId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPeer" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDemo" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secondaryEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="primaryPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="secondaryPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="instantMessenger" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="htmlMail" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ecommerceEnabled" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserLiteralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserLiteralResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeUserPasswordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="tns:UserStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeUserStatusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="settingsName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserSettingsResult" type="tns:UserSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SettingsName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SettingsArray" type="tns:ArrayOfArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUserSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="settings" type="tns:UserSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUserSettingsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UserExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:UserExists" />
+  </wsdl:message>
+  <wsdl:message name="UserExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:UserExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserById" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByUsername" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserVLanSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserVLan" />
+  </wsdl:message>
+  <wsdl:message name="AddUserVLanSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserVLanResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserVLanSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUserVLan" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserVLanSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserVLanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRawUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRawUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetRawUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRawUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPagedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersPaged" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPagedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersPagedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPagedRecursiveSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersPagedRecursive" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPagedRecursiveSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersPagedRecursiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersSummary" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDomainsPagedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDomainsPaged" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDomainsPagedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDomainsPagedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRawUserPeersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRawUserPeers" />
+  </wsdl:message>
+  <wsdl:message name="GetRawUserPeersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRawUserPeersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPeersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserPeers" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPeersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserPeersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserParentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserParents" />
+  </wsdl:message>
+  <wsdl:message name="GetUserParentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="AddUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserLiteralSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserLiteral" />
+  </wsdl:message>
+  <wsdl:message name="AddUserLiteralSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserLiteralResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserTask" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserTaskAsynchronouslySoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserTaskAsynchronously" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserTaskAsynchronouslySoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserTaskAsynchronouslyResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserLiteralSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserLiteral" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserLiteralSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserLiteralResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserSettings" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="esUsersSoap">
+    <wsdl:operation name="UserExists">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the account with the specified username exists.</wsdl:documentation>
+      <wsdl:input message="tns:UserExistsSoapIn" />
+      <wsdl:output message="tns:UserExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <wsdl:input message="tns:GetUserByIdSoapIn" />
+      <wsdl:output message="tns:GetUserByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <wsdl:input message="tns:GetUserByUsernameSoapIn" />
+      <wsdl:output message="tns:GetUserByUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input message="tns:GetUsersSoapIn" />
+      <wsdl:output message="tns:GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserVLan">
+      <wsdl:input message="tns:AddUserVLanSoapIn" />
+      <wsdl:output message="tns:AddUserVLanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserVLan">
+      <wsdl:input message="tns:DeleteUserVLanSoapIn" />
+      <wsdl:output message="tns:DeleteUserVLanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUsers">
+      <wsdl:input message="tns:GetRawUsersSoapIn" />
+      <wsdl:output message="tns:GetRawUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPaged">
+      <wsdl:input message="tns:GetUsersPagedSoapIn" />
+      <wsdl:output message="tns:GetUsersPagedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPagedRecursive">
+      <wsdl:input message="tns:GetUsersPagedRecursiveSoapIn" />
+      <wsdl:output message="tns:GetUsersPagedRecursiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersSummary">
+      <wsdl:input message="tns:GetUsersSummarySoapIn" />
+      <wsdl:output message="tns:GetUsersSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDomainsPaged">
+      <wsdl:input message="tns:GetUserDomainsPagedSoapIn" />
+      <wsdl:output message="tns:GetUserDomainsPagedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUserPeers">
+      <wsdl:input message="tns:GetRawUserPeersSoapIn" />
+      <wsdl:output message="tns:GetRawUserPeersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPeers">
+      <wsdl:input message="tns:GetUserPeersSoapIn" />
+      <wsdl:output message="tns:GetUserPeersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserParents">
+      <wsdl:input message="tns:GetUserParentsSoapIn" />
+      <wsdl:output message="tns:GetUserParentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input message="tns:AddUserSoapIn" />
+      <wsdl:output message="tns:AddUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserLiteral">
+      <wsdl:input message="tns:AddUserLiteralSoapIn" />
+      <wsdl:output message="tns:AddUserLiteralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTask">
+      <wsdl:input message="tns:UpdateUserTaskSoapIn" />
+      <wsdl:output message="tns:UpdateUserTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTaskAsynchronously">
+      <wsdl:input message="tns:UpdateUserTaskAsynchronouslySoapIn" />
+      <wsdl:output message="tns:UpdateUserTaskAsynchronouslySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:UpdateUserSoapIn" />
+      <wsdl:output message="tns:UpdateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserLiteral">
+      <wsdl:input message="tns:UpdateUserLiteralSoapIn" />
+      <wsdl:output message="tns:UpdateUserLiteralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <wsdl:input message="tns:ChangeUserPasswordSoapIn" />
+      <wsdl:output message="tns:ChangeUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <wsdl:input message="tns:ChangeUserStatusSoapIn" />
+      <wsdl:output message="tns:ChangeUserStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettings">
+      <wsdl:input message="tns:GetUserSettingsSoapIn" />
+      <wsdl:output message="tns:GetUserSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSettings">
+      <wsdl:input message="tns:UpdateUserSettingsSoapIn" />
+      <wsdl:output message="tns:UpdateUserSettingsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="esUsersSoap" type="tns:esUsersSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UserExists">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UserExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserVLan">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUserVLan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserVLan">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/DeleteUserVLan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUsers">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetRawUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPaged">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersPaged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPagedRecursive">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersPagedRecursive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersSummary">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDomainsPaged">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserDomainsPaged" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUserPeers">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetRawUserPeers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPeers">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserPeers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserParents">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserParents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserLiteral">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUserLiteral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTask">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTaskAsynchronously">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserTaskAsynchronously" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserLiteral">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserLiteral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettings">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSettings">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="esUsersSoap12" type="tns:esUsersSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UserExists">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UserExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsername">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserVLan">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUserVLan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserVLan">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/DeleteUserVLan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUsers">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetRawUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPaged">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersPaged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPagedRecursive">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersPagedRecursive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersSummary">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUsersSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDomainsPaged">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserDomainsPaged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRawUserPeers">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetRawUserPeers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPeers">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserPeers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserParents">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserParents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserLiteral">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AddUserLiteral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTask">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserTaskAsynchronously">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserTaskAsynchronously" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserLiteral">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserLiteral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserStatus">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettings">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSettings">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/UpdateUserSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="esUsers">
+    <wsdl:port name="esUsersSoap" binding="tns:esUsersSoap">
+      <soap:address location="https://enterprise.kimdamdev.dk/esUsers.asmx" />
+    </wsdl:port>
+    <wsdl:port name="esUsersSoap12" binding="tns:esUsersSoap12">
+      <soap12:address location="https://enterprise.kimdamdev.dk/esUsers.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

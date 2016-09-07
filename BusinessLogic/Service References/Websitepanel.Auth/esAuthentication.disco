@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://enterprise.kimdamdev.dk/esAuthentication.asmx?wsdl" docRef="https://enterprise.kimdamdev.dk/esAuthentication.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://enterprise.kimdamdev.dk/esAuthentication.asmx" xmlns:q1="http://smbsaas/websitepanel/enterpriseserver" binding="q1:esAuthenticationSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://enterprise.kimdamdev.dk/esAuthentication.asmx" xmlns:q2="http://smbsaas/websitepanel/enterpriseserver" binding="q2:esAuthenticationSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

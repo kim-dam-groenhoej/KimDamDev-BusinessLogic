@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://smbsaas/websitepanel/enterpriseserver" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://smbsaas/websitepanel/enterpriseserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://smbsaas/websitepanel/enterpriseserver">
+      <s:element name="AuthenticateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateUserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByUsernamePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByUsernamePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserByUsernamePasswordResult" type="tns:UserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Role" type="tns:UserRole" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:UserStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginStatusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoginStatus" type="tns:UserLoginStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="FailedLogins" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPeer" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Changed" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDemo" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstantMessenger" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecondaryPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecondaryEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlMail" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EcommerceEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalParams" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vlans" type="tns:ArrayOfUserVlan" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UserRole">
+        <s:restriction base="s:string">
+          <s:enumeration value="Administrator" />
+          <s:enumeration value="Reseller" />
+          <s:enumeration value="User" />
+          <s:enumeration value="ResellerCSR" />
+          <s:enumeration value="PlatformCSR" />
+          <s:enumeration value="ResellerHelpdesk" />
+          <s:enumeration value="PlatformHelpdesk" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Active" />
+          <s:enumeration value="Suspended" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Pending" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserLoginStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Enabled" />
+          <s:enumeration value="Disabled" />
+          <s:enumeration value="LockedOut" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfUserVlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserVlan" nillable="true" type="tns:UserVlan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserVlan">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VLanID" type="s:unsignedShort" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangeUserPasswordByUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordByUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeUserPasswordByUsernameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPasswordReminder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPasswordReminderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendPasswordReminderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemSetupMode">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemSetupModeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSystemSetupModeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetupControlPanelAccounts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="passwordA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordB" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetupControlPanelAccountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetupControlPanelAccountsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByUsernamePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByUsernamePassword" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByUsernamePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByUsernamePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordByUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordByUsername" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordByUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendPasswordReminderSoapIn">
+    <wsdl:part name="parameters" element="tns:SendPasswordReminder" />
+  </wsdl:message>
+  <wsdl:message name="SendPasswordReminderSoapOut">
+    <wsdl:part name="parameters" element="tns:SendPasswordReminderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSetupModeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemSetupMode" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSetupModeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemSetupModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetupControlPanelAccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetupControlPanelAccounts" />
+  </wsdl:message>
+  <wsdl:message name="SetupControlPanelAccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetupControlPanelAccountsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="esAuthenticationSoap">
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:input message="tns:AuthenticateUserSoapIn" />
+      <wsdl:output message="tns:AuthenticateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsernamePassword">
+      <wsdl:input message="tns:GetUserByUsernamePasswordSoapIn" />
+      <wsdl:output message="tns:GetUserByUsernamePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByUsername">
+      <wsdl:input message="tns:ChangeUserPasswordByUsernameSoapIn" />
+      <wsdl:output message="tns:ChangeUserPasswordByUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPasswordReminder">
+      <wsdl:input message="tns:SendPasswordReminderSoapIn" />
+      <wsdl:output message="tns:SendPasswordReminderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetupMode">
+      <wsdl:input message="tns:GetSystemSetupModeSoapIn" />
+      <wsdl:output message="tns:GetSystemSetupModeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetupControlPanelAccounts">
+      <wsdl:input message="tns:SetupControlPanelAccountsSoapIn" />
+      <wsdl:output message="tns:SetupControlPanelAccountsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="esAuthenticationSoap" type="tns:esAuthenticationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsernamePassword">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserByUsernamePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByUsername">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserPasswordByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPasswordReminder">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/SendPasswordReminder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetupMode">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetSystemSetupMode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetupControlPanelAccounts">
+      <soap:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/SetupControlPanelAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="esAuthenticationSoap12" type="tns:esAuthenticationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthenticateUser">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByUsernamePassword">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetUserByUsernamePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPasswordByUsername">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/ChangeUserPasswordByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPasswordReminder">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/SendPasswordReminder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSetupMode">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/GetSystemSetupMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetupControlPanelAccounts">
+      <soap12:operation soapAction="http://smbsaas/websitepanel/enterpriseserver/SetupControlPanelAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="esAuthentication">
+    <wsdl:port name="esAuthenticationSoap" binding="tns:esAuthenticationSoap">
+      <soap:address location="https://enterprise.kimdamdev.dk/esAuthentication.asmx" />
+    </wsdl:port>
+    <wsdl:port name="esAuthenticationSoap12" binding="tns:esAuthenticationSoap12">
+      <soap12:address location="https://enterprise.kimdamdev.dk/esAuthentication.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
